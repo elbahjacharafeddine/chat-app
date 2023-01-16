@@ -1,11 +1,15 @@
 package com.javapapers.android.elbahjaapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +26,8 @@ import com.javapapers.android.elbahjaapplication.model.User;
 public class UserProfileActivity extends AppCompatActivity {
 
     LinearLayout personalinfo, experience, review;
-    TextView personalinfobtn, experiencebtn, reviewbtn,email,name_user;
+    TextView personalinfobtn, experiencebtn, reviewbtn,email,name_user,phone_user;
+    ImageView logoutBtn;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -47,6 +52,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         name_user = findViewById(R.id.name_user);
+        phone_user = findViewById(R.id.phone_user);
+        logoutBtn = findViewById(R.id.logoutBtn);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -59,6 +67,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 if(user != null){
                     email.setText(user.getEmail());
                     name_user.setText(user.getName());
+                    phone_user.setText(user.getPhone()+"");
                 }
             }
 
@@ -112,5 +121,36 @@ public class UserProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfileActivity.this);
+                dialog.setCancelable(false);
+                dialog.setTitle("Logout");
+                dialog.setMessage("Are you sure you want to logout ?" );
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Action for "Delete".
+                                firebaseAuth.signOut();
+                                startActivity(new Intent(UserProfileActivity.this,MainActivity.class));
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Cancel ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Action for "Cancel".
+                            }
+                        });
+
+                final AlertDialog alert = dialog.create();
+                alert.show();
+            }
+        });
+
+
     }
 }
