@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854927945014",
+    "project_id": "elbahjaapp",
+    "storage_bucket": "elbahjaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854927945014:android:4effb84e83a5de3e4d5797",
+        "android_client_info": {
+          "package_name": "com.javapapers.android.elbahjaapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854927945014-ktuko1g9q8fq74blis9t9s1argje78kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDioWP_DjeXnYMr4-7wLVPrAceG9dSGiVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854927945014-ktuko1g9q8fq74blis9t9s1argje78kk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
